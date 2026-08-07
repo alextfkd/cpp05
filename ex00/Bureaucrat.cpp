@@ -6,29 +6,26 @@
 /*   By: tkatsuma <tkatsuma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/30 10:58:00 by tkatsuma          #+#    #+#             */
-/*   Updated: 2026/08/07 08:13:54 by tkatsuma         ###   ########.fr       */
+/*   Updated: 2026/08/07 08:20:49 by tkatsuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(std::string name, int grade)
+Bureaucrat::Bureaucrat(const std::string& name, int grade)
     : _name(name), _grade(grade) {
-  // std::cout << "Bureaucrat default constructor called" << std::endl;
   validateGrade(grade);
   _grade = grade;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other)
     : _name(other._name), _grade(other._grade) {
-  // std::cout << "Bureaucrat copy constructor called" << std::endl;
   validateGrade(other._grade);
   _grade = other._grade;
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
   if (this != &other) {
-    //_name = other.getName();
     _grade = other._grade;
   }
   validateGrade(other._grade);
@@ -36,10 +33,9 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
 }
 
 Bureaucrat::~Bureaucrat() {
-  // std::cout << "Bureaucrat destructor called" << std::endl;
 }
 
-std::ostream& operator<<(std::ostream& os, Bureaucrat bureaucrat) {
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat) {
   os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << ".";
   return os;
 }
