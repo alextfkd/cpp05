@@ -6,7 +6,7 @@
 /*   By: tkatsuma <tkatsuma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/30 10:58:00 by tkatsuma          #+#    #+#             */
-/*   Updated: 2026/08/07 08:00:10 by tkatsuma         ###   ########.fr       */
+/*   Updated: 2026/08/07 08:13:54 by tkatsuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ Bureaucrat::~Bureaucrat() {
 }
 
 std::ostream& operator<<(std::ostream& os, Bureaucrat bureaucrat) {
-  os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
+  os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << ".";
   return os;
 }
 
@@ -73,9 +73,9 @@ int Bureaucrat::decrementGrade() {
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
-  return "Exception: Grade too high";
+  return "Exception: Grade too high!";
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw() {
-  return "Exception: Grade too low";
+  return "Exception: Grade too low!";
 }
