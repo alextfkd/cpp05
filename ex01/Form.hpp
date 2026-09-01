@@ -6,7 +6,7 @@
 /*   By: tkatsuma <tkatsuma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/07 08:24:45 by tkatsuma          #+#    #+#             */
-/*   Updated: 2026/09/01 03:47:39 by tkatsuma         ###   ########.fr       */
+/*   Updated: 2026/09/01 07:52:55 by tkatsuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ If the grade is too low, throw a Form::GradeTooLowException.
 #ifndef FORM_HPP
 #define FORM_HPP
 
+#include <ostream>
+
 class Bureaucrat;
 
 class Form {
@@ -48,12 +50,10 @@ class Form {
   Form& operator=(const Form& other);
   ~Form();
 
-  std::ostream& operator<<(const Form& form) const;
-
   std::string getName() const;
   bool        isSigned() const;
-  int   getGradeToSign() const;
-  int   getGradeToExecute() const;
+  int         getGradeToSign() const;
+  int         getGradeToExecute() const;
 
   void beSigned(const Bureaucrat& bureaucrat);
 
@@ -69,5 +69,7 @@ class Form {
     const char* what() const throw();
   };
 };
+
+std::ostream& operator<<(std::ostream& os, const Form& form);
 
 #endif

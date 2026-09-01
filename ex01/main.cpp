@@ -6,49 +6,15 @@
 /*   By: tkatsuma <tkatsuma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/30 10:40:19 by tkatsuma          #+#    #+#             */
-/*   Updated: 2026/09/01 03:22:58 by tkatsuma         ###   ########.fr       */
+/*   Updated: 2026/09/01 08:22:44 by tkatsuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-Let’s design an artificial nightmare of offices, corridors, forms, and waiting
-queues.
-
-Sounds fun? No? Too bad.
-
-First, start with the smallest cog in this vast bureaucratic machine: the
-Bureaucrat. A Bureaucrat must have: • A constant name. • A grade that ranges
-from 1 (highest possible grade) to 150 (lowest possible grade). Any attempt to
-instantiate a Bureaucrat with an invalid grade must throw an exception: either a
-Bureaucrat::GradeTooHighException or a Bureaucrat::GradeTooLowException.
-
-You will provide getters for both attributes: getName() and getGrade(). You must
-also implement two member functions to increment or decrement the bureaucrat’s
-grade. If the grade goes out of range, both functions must throw the same
-exceptions as the constructor.
-
-Remember, since grade 1 is the highest and 150 the lowest,
-incrementing a grade 3 should result in a grade 2 for the bureaucrat.
-The thrown exceptions must be catchable using try and catch blocks:
-
-try
-{
-  do some stuff with bureaucrats
-}
-catch (std::exception & e)
-{
-  handle exception
-}
-You must implement an overload of the insertion («) operator to print output in
-the following format (without the angle brackets): <name>, bureaucrat grade
-<grade>. As usual, submit some tests to prove that everything works as expected.
-
-*/
 
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
-int main() {
+void test_ex00() {
+  std::cout << "\n=== Test ex00 ===" << std::endl;
   std::cout << "=== Instanciation test: Normal ===" << std::endl;
   Bureaucrat* bureaucrat = new Bureaucrat("Alice", 1);
   std::cout << *bureaucrat << std::endl;
@@ -107,5 +73,58 @@ int main() {
   } catch (std::exception& e) {
     std::cout << e.what() << std::endl;
   }
+}
+
+void test_ex01() {
+  std::cout << "\n=== Test ex01, for Form class ===" << std::endl;
+  std::cout << "=== instantiate Form class ===" << std::endl;
+  Form form = Form("Test Form", 1, 150);
+  std::cout << form << std::endl;
+  std::cout << "=== copy constructor ===" << std::endl;
+  Form form2 = form;
+  std::cout << form2 << std::endl;
+  std::cout << "=== copy assignment operator ===" << std::endl;
+  Form form3 = Form("Test Form 2", 1, 150);
+  form3      = form;
+  std::cout << form3 << std::endl;
+  std::cout << "=== instantiate Form class with grade too high ==="
+            << std::endl;
+  try {
+    Form form4 = Form("Test Form 3", 0, 150);
+    std::cout << form4 << std::endl;
+  } catch (std::exception& e) {
+    std::cout << e.what() << std::endl;
+  }
+  std::cout << "=== instantiate Form class with grade too low ===" << std::endl;
+  try {
+    Form form5 = Form("Test Form 4", 151, 150);
+    std::cout << form5 << std::endl;
+  } catch (std::exception& e) {
+    std::cout << e.what() << std::endl;
+  }
+}
+
+int main() {
+  // test_ex00();
+  test_ex01();
+  std::cout << "=== Test ex01, full functionality test ===" << std::endl;
+  Bureaucrat alice_10         = Bureaucrat("Alice", 10);
+  Bureaucrat bob_30           = Bureaucrat("Bob", 30);
+  Form       alice_math_test  = Form("Math Test", 20, 150);
+  Form       bob_english_test = Form("English Test", 20, 150);
+
+  std::cout << "=== Form before signing ===" << std::endl;
+  std::cout << alice_math_test << std::endl;
+  std::cout << "=== Bureaucrat signing form ===" << std::endl;
+  alice_10.signForm(alice_math_test);
+  std::cout << "\n=== Form after signing ===" << std::endl;
+  std::cout << alice_math_test << std::endl;
+
+  std::cout << "=== Form before signing ===" << std::endl;
+  std::cout << bob_english_test << std::endl;
+  std::cout << "=== Bureaucrat signing form ===" << std::endl;
+  bob_30.signForm(bob_english_test);
+  std::cout << "\n=== Form after signing ===" << std::endl;
+  std::cout << bob_english_test << std::endl;
   return 0;
 }

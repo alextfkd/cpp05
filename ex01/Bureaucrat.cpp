@@ -6,11 +6,12 @@
 /*   By: tkatsuma <tkatsuma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/30 10:58:00 by tkatsuma          #+#    #+#             */
-/*   Updated: 2026/09/01 06:58:33 by tkatsuma         ###   ########.fr       */
+/*   Updated: 2026/09/01 09:19:17 by tkatsuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+
 #include "Form.hpp"
 
 Bureaucrat::Bureaucrat(const std::string& name, int grade)
@@ -88,8 +89,9 @@ Otherwise, it will print something like:
 void Bureaucrat::signForm(Form& form) {
   try {
     form.beSigned(*this);
+    std::cout << getName() << " signed " << form.getName() << "." << std::endl;
   } catch (std::exception& e) {
-    std::cout << getName() << " couldn't sign " << form.getName()
-              << " because " << e.what() << std::endl;
+    std::cout << getName() << " couldn't sign " << form.getName() << " because "
+              << e.what() << "." << std::endl;
   }
 }
