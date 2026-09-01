@@ -6,7 +6,7 @@
 /*   By: tkatsuma <tkatsuma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/30 10:40:19 by tkatsuma          #+#    #+#             */
-/*   Updated: 2026/08/07 08:06:00 by tkatsuma         ###   ########.fr       */
+/*   Updated: 2026/09/01 03:22:58 by tkatsuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ the following format (without the angle brackets): <name>, bureaucrat grade
 */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main() {
   std::cout << "=== Instanciation test: Normal ===" << std::endl;

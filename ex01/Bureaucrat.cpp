@@ -6,41 +6,38 @@
 /*   By: tkatsuma <tkatsuma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/30 10:58:00 by tkatsuma          #+#    #+#             */
-/*   Updated: 2026/08/07 08:00:10 by tkatsuma         ###   ########.fr       */
+/*   Updated: 2026/09/01 06:58:33 by tkatsuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
-Bureaucrat::Bureaucrat(std::string name, int grade)
+Bureaucrat::Bureaucrat(const std::string& name, int grade)
     : _name(name), _grade(grade) {
-  // std::cout << "Bureaucrat default constructor called" << std::endl;
   validateGrade(grade);
   _grade = grade;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other)
     : _name(other._name), _grade(other._grade) {
-  // std::cout << "Bureaucrat copy constructor called" << std::endl;
   validateGrade(other._grade);
   _grade = other._grade;
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
   if (this != &other) {
-    //_name = other.getName();
     _grade = other._grade;
   }
   validateGrade(other._grade);
   return *this;
 }
 
-Bureaucrat::~Bureaucrat() {
-  // std::cout << "Bureaucrat destructor called" << std::endl;
-}
+Bureaucrat::~Bureaucrat() {}
 
-std::ostream& operator<<(std::ostream& os, Bureaucrat bureaucrat) {
-  os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat) {
+  os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade()
+     << ".";
   return os;
 }
 
@@ -73,9 +70,26 @@ int Bureaucrat::decrementGrade() {
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
-  return "Exception: Grade too high";
+  return "Exception: Grade too high!";
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw() {
-  return "Exception: Grade too low";
+  return "Exception: Grade too low!";
+}
+
+/*
+Then, add a signForm() member function in the Bureaucrat class.
+This function must call Form::beSigned() to attempt to sign the form.
+If the form is signed successfully, it will print something like:
+  <bureaucrat> signed <form>
+Otherwise, it will print something like:
+  <bureaucrat> couldn’t sign <form> because <reason>.
+*/
+void Bureaucrat::signForm(Form& form) {
+  try {
+    form.beSigned(*this);
+  } catch (std::exception& e) {
+    std::cout << getName() << " couldn't sign " << form.getName()
+              << " because " << e.what() << std::endl;
+  }
 }
