@@ -32,11 +32,11 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
   return *this;
 }
 
-Bureaucrat::~Bureaucrat() {
-}
+Bureaucrat::~Bureaucrat() {}
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat) {
-  os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << ".";
+  os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade()
+     << ".";
   return os;
 }
 
