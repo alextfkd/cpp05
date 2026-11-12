@@ -30,4 +30,10 @@ fclean: clean
 
 re: fclean all
 
+test: valgrind
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
+
+valgrind:
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
+
 .PHONY: all clean fclean re cppformat cpplint
