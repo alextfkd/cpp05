@@ -57,5 +57,3 @@ AlignConsecutiveMacros: true
 
 # Align comments at the end of lines
 AlignTrailingComments: true
-
-InsertNewlineAtEOF: true
