@@ -17,9 +17,12 @@
 #include "ShrubberyCreationForm.hpp"
 
 int main() {
+  const int kAliceGrade = 10;
+  const int kBobGrade   = 140;
+
   std::cout << "=== Test ex02 ===" << std::endl;
-  Bureaucrat             alice = Bureaucrat("Alice", 10);
-  Bureaucrat             bob   = Bureaucrat("Bob", 140);
+  Bureaucrat             alice = Bureaucrat("Alice", kAliceGrade);
+  Bureaucrat             bob   = Bureaucrat("Bob", kBobGrade);
   ShrubberyCreationForm  shrubbery("home");
   RobotomyRequestForm    robotomy("Bender");
   PresidentialPardonForm pardon("Arthur Dent");
