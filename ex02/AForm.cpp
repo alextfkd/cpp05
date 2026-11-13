@@ -74,10 +74,10 @@ const char* AForm::NotSignedException::what() const throw() {
 }
 
 void AForm::validateGrade(int grade) {
-  if (grade < 1) {
+  if (grade < kHighestGrade) {
     throw AForm::GradeTooHighException();
   }
-  if (grade > 150) {
+  if (grade > kLowestGrade) {
     throw AForm::GradeTooLowException();
   }
 }

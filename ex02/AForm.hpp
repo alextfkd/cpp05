@@ -33,6 +33,9 @@ class AForm {
   const int         _gradeToExecute;
 
  public:
+  static const int kHighestGrade = 1;
+  static const int kLowestGrade  = 150;
+
   AForm(const std::string& name, int gradeToSign, int gradeToExecute);
   AForm(const AForm& other);
   AForm& operator=(const AForm& other);
@@ -45,7 +48,7 @@ class AForm {
 
   void beSigned(const Bureaucrat& bureaucrat);
 
-  void validateGrade(int grade);
+  static void validateGrade(int grade);
 
   class GradeTooHighException : public std::exception {
    public:

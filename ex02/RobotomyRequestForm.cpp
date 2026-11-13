@@ -18,7 +18,8 @@
 #include "Bureaucrat.hpp"
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string& target)
-    : AForm("RobotomyRequestForm", 72, 45), _target(target) {}
+    : AForm("RobotomyRequestForm", kGradeToSign, kGradeToExecute),
+      _target(target) {}
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other)
     : AForm(other), _target(other._target) {}

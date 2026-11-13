@@ -44,11 +44,11 @@ std::ostream& operator<<(std::ostream&     output_stream,
 }
 
 int Bureaucrat::validateGrade(int grade) {
-  if (grade < 1) {
+  if (grade < kHighestGrade) {
     throw Bureaucrat::GradeTooHighException();
     return 1;
   }
-  if (grade > 150) {
+  if (grade > kLowestGrade) {
     throw Bureaucrat::GradeTooLowException();
     return 1;
   }
@@ -87,7 +87,7 @@ If the form is signed successfully, it will print something like:
 Otherwise, it will print something like:
   <bureaucrat> couldn’t sign <form> because <reason>.
 */
-void Bureaucrat::signForm(AForm& form) {
+void Bureaucrat::signForm(AForm& form) const {
   try {
     form.beSigned(*this);
     std::cout << getName() << " signed " << form.getName() << "." << std::endl;

@@ -35,6 +35,9 @@ form. For example, "home" if you want to plant shrubbery at home.
 
 class RobotomyRequestForm : public AForm {
  public:
+  static const int kGradeToSign    = 72;
+  static const int kGradeToExecute = 45;
+
   RobotomyRequestForm(const std::string& target);
   RobotomyRequestForm(const RobotomyRequestForm& other);
   RobotomyRequestForm& operator=(const RobotomyRequestForm& other);

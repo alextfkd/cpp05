@@ -34,6 +34,9 @@ form. For example, "home" if you want to plant shrubbery at home.
 
 class ShrubberyCreationForm : public AForm {
  public:
+  static const int kGradeToSign    = 145;
+  static const int kGradeToExecute = 137;
+
   ShrubberyCreationForm(const std::string& target);
   ShrubberyCreationForm(const ShrubberyCreationForm& other);
   ShrubberyCreationForm& operator=(const ShrubberyCreationForm& other);
