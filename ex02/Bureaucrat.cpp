@@ -36,10 +36,11 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
 
 Bureaucrat::~Bureaucrat() {}
 
-std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat) {
-  os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade()
-     << ".";
-  return os;
+std::ostream& operator<<(std::ostream&     output_stream,
+                         const Bureaucrat& bureaucrat) {
+  output_stream << bureaucrat.getName() << ", bureaucrat grade "
+                << bureaucrat.getGrade() << ".";
+  return output_stream;
 }
 
 int Bureaucrat::validateGrade(int grade) {

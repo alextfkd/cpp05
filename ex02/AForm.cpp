@@ -45,9 +45,11 @@ AForm::~AForm() {}
 
 std::ostream& operator<<(std::ostream& output_stream, const AForm& form) {
   output_stream << "Form name: " << form.getName() << "\n"
-     << "Form status: " << (form.isSigned() ? "signed" : "not signed") << "\n"
-     << "Form grade to sign: " << form.getGradeToSign() << "\n"
-     << "Form grade to execute: " << form.getGradeToExecute() << "\n";
+                << "Form status: "
+                << (form.isSigned() ? "signed" : "not signed") << "\n"
+                << "Form grade to sign: " << form.getGradeToSign() << "\n"
+                << "Form grade to execute: " << form.getGradeToExecute()
+                << "\n";
   return output_stream;
 }
 
