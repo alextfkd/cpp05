@@ -6,13 +6,14 @@
 /*   By: tkatsuma <tkatsuma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/07 08:24:45 by tkatsuma          #+#    #+#             */
-/*   Updated: 2026/11/13 09:04:17 by tkatsuma         ###   ########.fr       */
+/*   Updated: 2026/11/13 11:02:09 by tkatsuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-#define FORM_HPP
+#ifndef AFORM_HPP
+#define AFORM_HPP
 
+#include <exception>
 #include <ostream>
 #include <string>
 
@@ -35,7 +36,7 @@ class AForm {
   AForm(const std::string& name, int gradeToSign, int gradeToExecute);
   AForm(const AForm& other);
   AForm& operator=(const AForm& other);
-  ~AForm();
+  virtual ~AForm();
 
   std::string getName() const;
   bool        isSigned() const;
@@ -55,9 +56,15 @@ class AForm {
    public:
     const char* what() const throw();
   };
-  void execute(Bureaucrat const& executor) const = 0;
+
+  class NotSignedException : public std::exception {
+   public:
+    const char* what() const throw();
+  };
+
+  virtual void execute(Bureaucrat const& executor) const = 0;
 };
 
-std::ostream& operator<<(std::ostream& os, const Form& form);
+std::ostream& operator<<(std::ostream& output_stream, const AForm& form);
 
 #endif

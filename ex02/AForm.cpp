@@ -6,11 +6,12 @@
 /*   By: tkatsuma <tkatsuma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/07 08:24:45 by tkatsuma          #+#    #+#             */
-/*   Updated: 2026/09/01 11:50:31 by tkatsuma         ###   ########.fr       */
+/*   Updated: 2026/11/13 11:02:56 by tkatsuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
+
 #include "Bureaucrat.hpp"
 
 AForm::AForm(const std::string& name, int gradeToSign, int gradeToExecute)
@@ -22,7 +23,7 @@ AForm::AForm(const std::string& name, int gradeToSign, int gradeToExecute)
   validateGrade(gradeToExecute);
 }
 
-Form::Form(const Form& other)
+AForm::AForm(const AForm& other)
     : _name(other._name),
       _signed(other._signed),
       _gradeToSign(other._gradeToSign),
@@ -31,7 +32,7 @@ Form::Form(const Form& other)
   validateGrade(other._gradeToExecute);
 }
 
-Form& Form::operator=(const Form& other) {
+AForm& AForm::operator=(const AForm& other) {
   if (this != &other) {
     _signed = other._signed;
   }
@@ -40,17 +41,17 @@ Form& Form::operator=(const Form& other) {
   return *this;
 }
 
-Form::~Form() {}
+AForm::~AForm() {}
 
-std::ostream& operator<<(std::ostream& os, const Form& form) {
-  os << "Form name: " << form.getName() << "\n"
+std::ostream& operator<<(std::ostream& output_stream, const AForm& form) {
+  output_stream << "Form name: " << form.getName() << "\n"
      << "Form status: " << (form.isSigned() ? "signed" : "not signed") << "\n"
      << "Form grade to sign: " << form.getGradeToSign() << "\n"
      << "Form grade to execute: " << form.getGradeToExecute() << "\n";
-  return os;
+  return output_stream;
 }
 
-std::string Form::getName() const { return _name; }
+std::string AForm::getName() const { return _name; }
 
 bool AForm::isSigned() const { return _signed; }
 
@@ -66,12 +67,16 @@ const char* AForm::GradeTooHighException::what() const throw() {
   return "the grade is too high";
 }
 
+const char* AForm::NotSignedException::what() const throw() {
+  return "the form is not signed";
+}
+
 void AForm::validateGrade(int grade) {
   if (grade < 1) {
-    throw Form::GradeTooHighException();
+    throw AForm::GradeTooHighException();
   }
   if (grade > 150) {
-    throw Form::GradeTooLowException();
+    throw AForm::GradeTooLowException();
   }
 }
 
@@ -79,6 +84,6 @@ void AForm::beSigned(const Bureaucrat& bureaucrat) {
   if (bureaucrat.getGrade() <= _gradeToSign) {
     _signed = true;
   } else {
-    throw Form::GradeTooLowException();
+    throw AForm::GradeTooLowException();
   }
 }

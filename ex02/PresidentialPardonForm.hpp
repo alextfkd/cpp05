@@ -6,7 +6,7 @@
 /*   By: tkatsuma <tkatsuma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 10:59:59 by tkatsuma          #+#    #+#             */
-/*   Updated: 2026/11/13 09:03:36 by tkatsuma         ###   ########.fr       */
+/*   Updated: 2026/11/13 09:19:39 by tkatsuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,7 @@ class PresidentialPardonForm : public AForm {
   ~PresidentialPardonForm();
 
   void execute(Bureaucrat const& executor) const;
+
+ private:
+  std::string _target;
 };

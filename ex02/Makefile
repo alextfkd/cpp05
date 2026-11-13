@@ -1,8 +1,8 @@
-NAME = ex01
+NAME = ex02
 
 CXX = c++ -g
 
-SRCS = main.cpp Bureaucrat.cpp Form.cpp
+SRCS = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 
 OBJS = $(addprefix ./, $(SRCS:.cpp=.o))
 

@@ -10,53 +10,34 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-In all cases, the base class Form must be an abstract class and should therefore be
-renamed AForm. Keep in mind that the form’s attributes need to remain private and
-that they belong to the base class.
-
-• PresidentialPardonForm: Required grades: sign 25, exec 5
-Informs that <target> has been pardoned by Zaphod Beeblebrox.
-
-All of them take only one parameter in their constructor: the target of the form.
-For example, "home" if you want to plant shrubbery at home.
-*/
-
 #include "PresidentialPardonForm.hpp"
 
+#include <iostream>
+
+#include "Bureaucrat.hpp"
+
 PresidentialPardonForm::PresidentialPardonForm(const std::string& target)
-    : AForm("PresidentialPardonForm", 25, 5), target(target)
-{
+    : AForm("PresidentialPardonForm", 25, 5), _target(target) {}
+
+PresidentialPardonForm::PresidentialPardonForm(
+    const PresidentialPardonForm& other)
+    : AForm(other), _target(other._target) {}
+
+PresidentialPardonForm& PresidentialPardonForm::operator=(
+    const PresidentialPardonForm& other) {
+  if (this != &other) {
+    AForm::operator=(other);
+    _target = other._target;
+  }
+  return *this;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other)
-    : AForm(other), target(other.target)
-{
-}
+PresidentialPardonForm::~PresidentialPardonForm() {}
 
-PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& other)
-{
-    if (this != &other)
-    {
-        AForm::operator=(other);
-        target = other.target;
-    }
-    return *this;
-}
-
-PresidentialPardonForm::~PresidentialPardonForm()
-{
-}
-
-void PresidentialPardonForm::execute(Bureaucrat const & executor) const
-{
-    if (!getIsSigned())
-    {
-        throw AForm::NotSignedException();
-    }
-    if (executor.getGrade() > getExecGrade())
-    {
-        throw AForm::GradeTooLowException();
-    }
-    std::cout << target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
+void PresidentialPardonForm::execute(Bureaucrat const& executor) const {
+  if (!isSigned()) throw AForm::NotSignedException();
+  if (executor.getGrade() > getGradeToExecute())
+    throw AForm::GradeTooLowException();
+  std::cout << _target << " has been pardoned by Zaphod Beeblebrox."
+            << std::endl;
 }
