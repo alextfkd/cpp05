@@ -33,7 +33,9 @@ If the grade is too low, throw a Form::GradeTooLowException.
 #ifndef FORM_HPP
 #define FORM_HPP
 
+#include <exception>
 #include <ostream>
+#include <string>
 
 class Bureaucrat;
 
@@ -43,6 +45,8 @@ class Form {
   bool              _signed;
   const int         _gradeToSign;
   const int         _gradeToExecute;
+
+  void validateGrade(int grade) const;
 
  public:
   Form(const std::string& name, int gradeToSign, int gradeToExecute);
@@ -56,8 +60,6 @@ class Form {
   int         getGradeToExecute() const;
 
   void beSigned(const Bureaucrat& bureaucrat);
-
-  void validateGrade(int grade);
 
   class GradeTooHighException : public std::exception {
    public:

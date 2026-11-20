@@ -80,7 +80,7 @@ const char* Form::GradeTooHighException::what() const throw() {
   return "the grade is too high";
 }
 
-void Form::validateGrade(int grade) {
+void Form::validateGrade(int grade) const {
   if (grade < 1) {
     throw Form::GradeTooHighException();
   }
