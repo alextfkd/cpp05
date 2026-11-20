@@ -6,7 +6,7 @@
 /*   By: tkatsuma <tkatsuma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/07 08:24:45 by tkatsuma          #+#    #+#             */
-/*   Updated: 2026/09/01 07:52:55 by tkatsuma         ###   ########.fr       */
+/*   Updated: 2026/11/20 07:51:19 by tkatsuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,14 @@ class Form {
   Form& operator=(const Form& other);
   ~Form();
 
+  // Getters and setters
   std::string getName() const;
   bool        isSigned() const;
   int         getGradeToSign() const;
   int         getGradeToExecute() const;
 
+  // beSigned() should be a public member function,
+  // so it can be called by the Bureaucrat class.
   void beSigned(const Bureaucrat& bureaucrat);
 
   class GradeTooHighException : public std::exception {
