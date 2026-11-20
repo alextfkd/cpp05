@@ -145,8 +145,8 @@ int main() {
 
   std::cout << "=== Sign when bureaucrat grade equals required grade ==="
             << std::endl;
-  Bureaucrat carol_20       = Bureaucrat("Carol", 20);
-  Form       carol_science  = Form("Science Test", 20, 150);
+  Bureaucrat carol_20      = Bureaucrat("Carol", 20);
+  Form       carol_science = Form("Science Test", 20, 150);
   std::cout << "=== Form before signing ===" << std::endl;
   std::cout << carol_science << std::endl;
   carol_20.signForm(carol_science);
