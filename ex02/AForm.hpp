@@ -32,23 +32,25 @@ class AForm {
   const int         _gradeToSign;
   const int         _gradeToExecute;
 
- public:
-  static const int kHighestGrade = 1;
-  static const int kLowestGrade  = 150;
+  void validateGrade(int grade) const;
 
+ public:
   AForm(const std::string& name, int gradeToSign, int gradeToExecute);
   AForm(const AForm& other);
   AForm& operator=(const AForm& other);
   virtual ~AForm();
 
+  // Getters and setters
   std::string getName() const;
   bool        isSigned() const;
   int         getGradeToSign() const;
   int         getGradeToExecute() const;
 
+  // beSigned() should be a public member function,
+  // so it can be called by the Bureaucrat class.
   void beSigned(const Bureaucrat& bureaucrat);
 
-  static void validateGrade(int grade);
+  virtual void execute(Bureaucrat const& executor) const = 0;
 
   class GradeTooHighException : public std::exception {
    public:
@@ -64,10 +66,8 @@ class AForm {
    public:
     const char* what() const throw();
   };
-
-  virtual void execute(Bureaucrat const& executor) const = 0;
 };
 
-std::ostream& operator<<(std::ostream& output_stream, const AForm& form);
+std::ostream& operator<<(std::ostream& os, const AForm& form);
 
 #endif

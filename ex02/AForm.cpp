@@ -43,14 +43,12 @@ AForm& AForm::operator=(const AForm& other) {
 
 AForm::~AForm() {}
 
-std::ostream& operator<<(std::ostream& output_stream, const AForm& form) {
-  output_stream << "Form name: " << form.getName() << "\n"
-                << "Form status: "
-                << (form.isSigned() ? "signed" : "not signed") << "\n"
-                << "Form grade to sign: " << form.getGradeToSign() << "\n"
-                << "Form grade to execute: " << form.getGradeToExecute()
-                << "\n";
-  return output_stream;
+std::ostream& operator<<(std::ostream& os, const AForm& form) {
+  os << "Form name: " << form.getName() << "\n"
+     << "Form status: " << (form.isSigned() ? "signed" : "not signed") << "\n"
+     << "Form grade to sign: " << form.getGradeToSign() << "\n"
+     << "Form grade to execute: " << form.getGradeToExecute() << "\n";
+  return os;
 }
 
 std::string AForm::getName() const { return _name; }
@@ -73,11 +71,11 @@ const char* AForm::NotSignedException::what() const throw() {
   return "the form is not signed";
 }
 
-void AForm::validateGrade(int grade) {
-  if (grade < kHighestGrade) {
+void AForm::validateGrade(int grade) const {
+  if (grade < 1) {
     throw AForm::GradeTooHighException();
   }
-  if (grade > kLowestGrade) {
+  if (grade > 150) {
     throw AForm::GradeTooLowException();
   }
 }

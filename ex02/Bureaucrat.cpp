@@ -17,13 +17,11 @@
 Bureaucrat::Bureaucrat(const std::string& name, int grade)
     : _name(name), _grade(grade) {
   validateGrade(grade);
-  _grade = grade;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other)
     : _name(other._name), _grade(other._grade) {
   validateGrade(other._grade);
-  _grade = other._grade;
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
@@ -36,23 +34,19 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
 
 Bureaucrat::~Bureaucrat() {}
 
-std::ostream& operator<<(std::ostream&     output_stream,
-                         const Bureaucrat& bureaucrat) {
-  output_stream << bureaucrat.getName() << ", bureaucrat grade "
-                << bureaucrat.getGrade() << ".";
-  return output_stream;
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat) {
+  os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade()
+     << ".";
+  return os;
 }
 
-int Bureaucrat::validateGrade(int grade) {
-  if (grade < kHighestGrade) {
+void Bureaucrat::validateGrade(int grade) const {
+  if (grade < 1) {
     throw Bureaucrat::GradeTooHighException();
-    return 1;
   }
-  if (grade > kLowestGrade) {
+  if (grade > 150) {
     throw Bureaucrat::GradeTooLowException();
-    return 1;
   }
-  return 0;
 }
 
 std::string Bureaucrat::getName() const { return _name; }
@@ -87,7 +81,7 @@ If the form is signed successfully, it will print something like:
 Otherwise, it will print something like:
   <bureaucrat> couldn’t sign <form> because <reason>.
 */
-void Bureaucrat::signForm(AForm& form) const {
+void Bureaucrat::signForm(AForm& form) {
   try {
     form.beSigned(*this);
     std::cout << getName() << " signed " << form.getName() << "." << std::endl;
