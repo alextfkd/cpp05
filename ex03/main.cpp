@@ -6,7 +6,7 @@
 /*   By: tkatsuma <tkatsuma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/30 10:40:19 by tkatsuma          #+#    #+#             */
-/*   Updated: 2026/11/12 11:47:43 by tkatsuma         ###   ########.fr       */
+/*   Updated: 2026/11/20 12:20:09 by tkatsuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
+#include "Intern.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
@@ -93,10 +94,33 @@ void test_pardon() {
   president.executeForm(ford);
 }
 
+void test_intern() {
+  std::cout << "=== Test intern ===" << std::endl;
+  Intern intern;
+  AForm* form = intern.makeForm("shrubbery creation", "home");
+  Bureaucrat("Alice", 10).signForm(*form);
+  Bureaucrat("Alice", 10).executeForm(*form);
+  delete form;
+  form = intern.makeForm("robotomy request", "bender");
+  Bureaucrat("Alice", 10).signForm(*form);
+  Bureaucrat("Alice", 10).executeForm(*form);
+  delete form;
+  form = intern.makeForm("presidential pardon", "arthur");
+  Bureaucrat("Alice", 10).signForm(*form);
+  Bureaucrat("Alice", 10).executeForm(*form);
+  delete form;
+  try {
+    form = intern.makeForm("invalid form", "arthur");
+  } catch (const std::invalid_argument& e) {
+    std::cout << "Error: " << e.what() << std::endl;
+  }
+}
+
 int main() {
-  std::cout << "=== Test ex02 ===" << std::endl;
+  std::cout << "=== Test ex03 ===" << std::endl;
   test_shrubbery();
   test_robotomy();
   test_pardon();
+  test_intern();
   return 0;
 }

@@ -11,16 +11,16 @@
 /* ************************************************************************** */
 
 #include "Intern.hpp"
-#include "ShrubberyCreationForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "PresidentialPardonForm.hpp"
+
 #include <iostream>
+
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 Intern::Intern() {}
 
-Intern::Intern(const Intern& other) {
-  (void)other;
-}
+Intern::Intern(const Intern& other) { (void)other; }
 
 Intern::~Intern() {}
 
@@ -43,29 +43,24 @@ AForm* Intern::createPresidentialPardonForm(std::string target) {
 
 /*
 However, the intern has one key ability: the makeForm() function. This function
-takes two strings as parameters: the first one represents the name of a form, and the
-second one represents the target of the form. It returns a pointer to a AForm object
-(corresponding to the form name passed as a parameter), with its target initialized to
-the second parameter.
-It should print something like:
+takes two strings as parameters: the first one represents the name of a form,
+and the second one represents the target of the form. It returns a pointer to a
+AForm object (corresponding to the form name passed as a parameter), with its
+target initialized to the second parameter. It should print something like:
 Intern creates <form>
 If the provided form name does not exist, print an explicit error message.
 
-You must avoid unreadable and messy solutions, such as using an excessive if/elseif/else structure. This kind of approach will not be accepted during the evaluation
-process. You’re not in the Piscine (pool) anymore. As usual, you must test everything
-to ensure it works as expected.
+You must avoid unreadable and messy solutions, such as using an excessive
+if/elseif/else structure. This kind of approach will not be accepted during the
+evaluation process. You’re not in the Piscine (pool) anymore. As usual, you must
+test everything to ensure it works as expected.
 */
 AForm* Intern::makeForm(std::string form_name, std::string target) {
-  std::string form_names[] = {
-    "shrubbery creation",
-    "robotomy request",
-    "presidential pardon"
-  };
+  std::string form_names[] = {"shrubbery creation", "robotomy request",
+                              "presidential pardon"};
   AForm* (Intern::*createForms[])(std::string) = {
-    &Intern::createShrubberyCreationForm,
-    &Intern::createRobotomyRequestForm,
-    &Intern::createPresidentialPardonForm
-  };
+      &Intern::createShrubberyCreationForm, &Intern::createRobotomyRequestForm,
+      &Intern::createPresidentialPardonForm};
   for (int i = 0; i < 3; i++) {
     if (form_name == form_names[i]) {
       std::cout << "Intern creates " << form_names[i] << std::endl;
