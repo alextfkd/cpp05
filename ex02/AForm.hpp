@@ -6,7 +6,7 @@
 /*   By: tkatsuma <tkatsuma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/07 08:24:45 by tkatsuma          #+#    #+#             */
-/*   Updated: 2026/11/13 11:02:09 by tkatsuma         ###   ########.fr       */
+/*   Updated: 2026/11/20 09:09:48 by tkatsuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ class AForm {
   };
 
   class NotSignedException : public std::exception {
+   public:
+    const char* what() const throw();
+  };
+
+  class ExecutionFailedException : public std::exception {
    public:
     const char* what() const throw();
   };

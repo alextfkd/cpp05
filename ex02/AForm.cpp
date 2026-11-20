@@ -6,7 +6,7 @@
 /*   By: tkatsuma <tkatsuma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/07 08:24:45 by tkatsuma          #+#    #+#             */
-/*   Updated: 2026/11/13 11:02:56 by tkatsuma         ###   ########.fr       */
+/*   Updated: 2026/11/20 09:10:11 by tkatsuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,8 @@ void AForm::beSigned(const Bureaucrat& bureaucrat) {
   } else {
     throw AForm::GradeTooLowException();
   }
+}
+
+const char* AForm::ExecutionFailedException::what() const throw() {
+  return "the file could not be opened";
 }
