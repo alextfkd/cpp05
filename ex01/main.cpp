@@ -152,5 +152,17 @@ int main() {
   carol_20.signForm(carol_science);
   std::cout << "\n=== Form after signing ===" << std::endl;
   std::cout << carol_science << std::endl;
+
+  std::cout << "=== Copy a signed form ===" << std::endl;
+  Form science_copy(carol_science);
+  std::cout << science_copy << std::endl;
+
+  std::cout << "=== Assign a signed form ===" << std::endl;
+  Form unsigned_form("Unsigned Form", 50, 40);
+  std::cout << "Before assignment: " << std::endl;
+  std::cout << unsigned_form << std::endl;
+  unsigned_form = carol_science;
+  std::cout << "After assignment: " << std::endl;
+  std::cout << unsigned_form << std::endl;
   return 0;
 }
