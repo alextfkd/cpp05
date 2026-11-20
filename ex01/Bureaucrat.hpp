@@ -23,6 +23,8 @@ class Bureaucrat {
   const std::string _name;
   int               _grade;
 
+  void validateGrade(int grade) const;
+
  public:
   Bureaucrat(const std::string& name, int grade);
   Bureaucrat(const Bureaucrat& other);
@@ -33,7 +35,6 @@ class Bureaucrat {
   int         getGrade() const;
   int         incrementGrade();
   int         decrementGrade();
-  int         validateGrade(int grade);
 
   void signForm(Form& form);
 

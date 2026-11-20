@@ -17,13 +17,11 @@
 Bureaucrat::Bureaucrat(const std::string& name, int grade)
     : _name(name), _grade(grade) {
   validateGrade(grade);
-  _grade = grade;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other)
     : _name(other._name), _grade(other._grade) {
   validateGrade(other._grade);
-  _grade = other._grade;
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
@@ -42,16 +40,13 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat) {
   return os;
 }
 
-int Bureaucrat::validateGrade(int grade) {
+void Bureaucrat::validateGrade(int grade) const {
   if (grade < 1) {
     throw Bureaucrat::GradeTooHighException();
-    return 1;
   }
   if (grade > 150) {
     throw Bureaucrat::GradeTooLowException();
-    return 1;
   }
-  return 0;
 }
 
 std::string Bureaucrat::getName() const { return _name; }
