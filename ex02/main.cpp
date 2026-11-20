@@ -72,12 +72,31 @@ void test_robotomy() {
   }
 }
 
+void test_pardon() {
+  const int kSignerGrade   = 10;
+  const int kExecutorGrade = 5;
+
+  std::cout << "\n=== Pardon: execute before signing ===" << std::endl;
+  Bureaucrat             alice("Alice", kSignerGrade);
+  PresidentialPardonForm arthur("Arthur Dent");
+  alice.executeForm(arthur);
+
+  std::cout << "\n=== Pardon: sign succeeds, execute grade too low ==="
+            << std::endl;
+  alice.signForm(arthur);
+  alice.executeForm(arthur);
+
+  std::cout << "\n=== Pardon: sign and execute ===" << std::endl;
+  Bureaucrat             president("Zaphod", kExecutorGrade);
+  PresidentialPardonForm ford("Ford Prefect");
+  president.signForm(ford);
+  president.executeForm(ford);
+}
+
 int main() {
   std::cout << "=== Test ex02 ===" << std::endl;
   test_shrubbery();
   test_robotomy();
-
-  PresidentialPardonForm pardon("Arthur Dent");
-  (void)pardon;
+  test_pardon();
   return 0;
 }
