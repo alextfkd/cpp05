@@ -6,7 +6,7 @@
 /*   By: tkatsuma <tkatsuma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/30 10:58:00 by tkatsuma          #+#    #+#             */
-/*   Updated: 2026/11/20 07:19:57 by tkatsuma         ###   ########.fr       */
+/*   Updated: 2026/11/20 07:37:21 by tkatsuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,11 @@
 Bureaucrat::Bureaucrat(const std::string& name, int grade)
     : _name(name), _grade(grade) {
   validateGrade(grade);
-  _grade = grade;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other)
     : _name(other._name), _grade(other._grade) {
   validateGrade(other._grade);
-  _grade = other._grade;
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {

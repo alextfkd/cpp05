@@ -72,6 +72,29 @@ int main() {
   std::cout << "After increment: " << *bureaucrat4 << std::endl;
   delete bureaucrat4;
 
+  std::cout << "\n=== Grade increment test: 3 to 2 ===" << std::endl;
+  Bureaucrat* bureaucrat9 = new Bureaucrat("Grace", 3);
+  std::cout << "Before increment: " << *bureaucrat9 << std::endl;
+  bureaucrat9->incrementGrade();
+  std::cout << "After increment: " << *bureaucrat9 << std::endl;
+  delete bureaucrat9;
+
+  std::cout << "\n=== Copy constructor test ===" << std::endl;
+  Bureaucrat original("Heidi", 42);
+  Bureaucrat copy(original);
+  std::cout << "Original: " << original << std::endl;
+  std::cout << "Copy: " << copy << std::endl;
+  copy.incrementGrade();
+  std::cout << "After incrementing the copy: " << copy << std::endl;
+  std::cout << "Original: " << original << std::endl;
+
+  std::cout << "\n=== Copy assignment test ===" << std::endl;
+  Bureaucrat assigned("Ivan", 100);
+  std::cout << "Before assignment: " << assigned << std::endl;
+  assigned = original;
+  std::cout << "After assignment: " << assigned << std::endl;
+  std::cout << "Original: " << original << std::endl;
+
   std::cout << "\n=== Exception test: GradeTooHighException ===" << std::endl;
   std::cout << "=== GradeTooHighException upon instantiation ===" << std::endl;
   try {
