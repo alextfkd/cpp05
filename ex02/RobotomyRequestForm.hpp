@@ -31,6 +31,9 @@ All of them take only one parameter in their constructor: the target of the
 form. For example, "home" if you want to plant shrubbery at home.
 */
 
+#ifndef ROBOTOMYREQUESTFORM_HPP
+#define ROBOTOMYREQUESTFORM_HPP
+
 #include "AForm.hpp"
 
 class RobotomyRequestForm : public AForm {
@@ -48,3 +51,5 @@ class RobotomyRequestForm : public AForm {
  private:
   std::string _target;
 };
+
+#endif

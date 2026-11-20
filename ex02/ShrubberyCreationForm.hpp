@@ -30,6 +30,10 @@ Informs that <target> has been pardoned by Zaphod Beeblebrox.
 All of them take only one parameter in their constructor: the target of the
 form. For example, "home" if you want to plant shrubbery at home.
 */
+
+#ifndef SHRUBBERYCREATIONFORM_HPP
+#define SHRUBBERYCREATIONFORM_HPP
+
 #include "AForm.hpp"
 
 class ShrubberyCreationForm : public AForm {
@@ -47,3 +51,5 @@ class ShrubberyCreationForm : public AForm {
  private:
   std::string _target;
 };
+
+#endif
