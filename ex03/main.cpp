@@ -109,11 +109,8 @@ void test_intern() {
   Bureaucrat("Alice", 10).signForm(*form);
   Bureaucrat("Alice", 10).executeForm(*form);
   delete form;
-  try {
-    form = intern.makeForm("invalid form", "arthur");
-  } catch (const std::invalid_argument& e) {
-    std::cout << "Error: " << e.what() << std::endl;
-  }
+  form = intern.makeForm("invalid form", "arthur");
+  delete form;
 }
 
 int main() {

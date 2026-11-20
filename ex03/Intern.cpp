@@ -67,5 +67,7 @@ AForm* Intern::makeForm(std::string form_name, std::string target) {
       return (this->*createForms[i])(target);
     }
   }
-  throw std::invalid_argument("Invalid form name");
+  std::cout << "Error: " << form_name << " is not a valid form name."
+            << std::endl;
+  return NULL;
 }
