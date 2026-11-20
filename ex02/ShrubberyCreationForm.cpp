@@ -40,7 +40,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const& executor) const {
   if (executor.getGrade() > getGradeToExecute())
     throw AForm::GradeTooLowException();
 
-  std::string filename = _target + "_shrubbery";
+  std::string       filename = _target + "_shrubbery";
   const std::string ascii_trees =
       "      ccee88oo\n"
       "   C8O8O8Q8PoOb o8oo\n"
@@ -53,10 +53,10 @@ void ShrubberyCreationForm::execute(Bureaucrat const& executor) const {
       "         |||\\/\n"
       "         |||||\n"
       "   ....//||||\\....\n";
-      std::ofstream file(filename.c_str());
-      if (!file.is_open()) {
-        throw AForm::ExecutionFailedException();
-      }
-      file << ascii_trees;
-      file.close();
+  std::ofstream file(filename.c_str());
+  if (!file.is_open()) {
+    throw AForm::ExecutionFailedException();
+  }
+  file << ascii_trees;
+  file.close();
 }
