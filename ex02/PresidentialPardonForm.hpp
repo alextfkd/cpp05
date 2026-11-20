@@ -6,7 +6,7 @@
 /*   By: tkatsuma <tkatsuma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 10:59:59 by tkatsuma          #+#    #+#             */
-/*   Updated: 2026/11/13 09:19:39 by tkatsuma         ###   ########.fr       */
+/*   Updated: 2026/11/20 08:22:40 by tkatsuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ form. For example, "home" if you want to plant shrubbery at home.
 #include "AForm.hpp"
 
 class PresidentialPardonForm : public AForm {
+ private:
+  std::string _target;
+
  public:
   static const int kGradeToSign    = 25;
   static const int kGradeToExecute = 5;
@@ -47,9 +50,6 @@ class PresidentialPardonForm : public AForm {
   ~PresidentialPardonForm();
 
   void execute(Bureaucrat const& executor) const;
-
- private:
-  std::string _target;
 };
 
 #endif
