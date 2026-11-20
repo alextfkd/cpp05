@@ -6,7 +6,7 @@
 /*   By: tkatsuma <tkatsuma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/30 10:58:00 by tkatsuma          #+#    #+#             */
-/*   Updated: 2026/08/07 08:20:49 by tkatsuma         ###   ########.fr       */
+/*   Updated: 2026/11/20 07:19:57 by tkatsuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,13 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat) {
   return os;
 }
 
-int Bureaucrat::validateGrade(int grade) {
+void Bureaucrat::validateGrade(int grade) const {
   if (grade < 1) {
     throw Bureaucrat::GradeTooHighException();
-    return 1;
   }
   if (grade > 150) {
     throw Bureaucrat::GradeTooLowException();
-    return 1;
   }
-  return 0;
 }
 
 std::string Bureaucrat::getName() const { return _name; }

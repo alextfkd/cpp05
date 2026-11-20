@@ -6,7 +6,7 @@
 /*   By: tkatsuma <tkatsuma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/30 10:40:19 by tkatsuma          #+#    #+#             */
-/*   Updated: 2026/08/07 08:06:00 by tkatsuma         ###   ########.fr       */
+/*   Updated: 2026/11/20 07:23:09 by tkatsuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ int main() {
   std::cout << *bureaucrat2 << std::endl;
   delete bureaucrat2;
 
-  std::cout << "\n=== Increment test: Normal ===" << std::endl;
+  std::cout << "\n=== Grade decrement test: Normal ===" << std::endl;
   Bureaucrat* bureaucrat3 = new Bureaucrat("Charlie", 1);
   std::cout << "Before decrement: " << *bureaucrat3 << std::endl;
   bureaucrat3->decrementGrade();
   std::cout << "After decrement: " << *bureaucrat3 << std::endl;
   delete bureaucrat3;
 
-  std::cout << "\n=== Decrement test: Normal ===" << std::endl;
+  std::cout << "\n=== Grade increment test: Normal ===" << std::endl;
   Bureaucrat* bureaucrat4 = new Bureaucrat("Dave", 150);
   std::cout << "Before increment: " << *bureaucrat4 << std::endl;
   bureaucrat4->incrementGrade();
