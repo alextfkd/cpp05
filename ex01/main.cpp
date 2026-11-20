@@ -6,7 +6,7 @@
 /*   By: tkatsuma <tkatsuma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/30 10:40:19 by tkatsuma          #+#    #+#             */
-/*   Updated: 2026/09/01 08:22:44 by tkatsuma         ###   ########.fr       */
+/*   Updated: 2026/11/20 07:47:45 by tkatsuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,22 @@ void test_ex01() {
   } catch (std::exception& e) {
     std::cout << e.what() << std::endl;
   }
+  std::cout << "=== instantiate Form class with execute grade too high ==="
+            << std::endl;
+  try {
+    Form form6 = Form("Test Form 5", 1, 0);
+    std::cout << form6 << std::endl;
+  } catch (std::exception& e) {
+    std::cout << e.what() << std::endl;
+  }
+  std::cout << "=== instantiate Form class with execute grade too low ==="
+            << std::endl;
+  try {
+    Form form7 = Form("Test Form 6", 1, 151);
+    std::cout << form7 << std::endl;
+  } catch (std::exception& e) {
+    std::cout << e.what() << std::endl;
+  }
 }
 
 int main() {
@@ -126,5 +142,15 @@ int main() {
   bob_30.signForm(bob_english_test);
   std::cout << "\n=== Form after signing ===" << std::endl;
   std::cout << bob_english_test << std::endl;
+
+  std::cout << "=== Sign when bureaucrat grade equals required grade ==="
+            << std::endl;
+  Bureaucrat carol_20       = Bureaucrat("Carol", 20);
+  Form       carol_science  = Form("Science Test", 20, 150);
+  std::cout << "=== Form before signing ===" << std::endl;
+  std::cout << carol_science << std::endl;
+  carol_20.signForm(carol_science);
+  std::cout << "\n=== Form after signing ===" << std::endl;
+  std::cout << carol_science << std::endl;
   return 0;
 }
